@@ -1,0 +1,141 @@
+ // TO- Do List //
+
+image address:-https://static.vecteezy.com/system/resources/thumbnails/053/730/761/small_2x/dreamlike-pastel-sky-ocean-sunset-serene-cloudscape-photo.jpeg
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAY-3(WP LAB)</title>
+    <style>
+        body {
+            background-image: url('S5.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            margin-left: 5px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .actions button {
+            margin-left: 5px;
+            color:black;
+            background-color: skyblue;
+        }
+        .actions button:hover {
+            background-color: lightgreen;
+        }   
+        .actions button:active {
+            background-color: orange;
+        }
+        .actions button:focus {
+            outline: none;
+        }
+        .b{
+            color: white;
+            font-size: 30px;
+        }
+        .actions{
+            display: flex;
+            gap: 10px;
+        }
+        .actions    {
+            margin-left: auto;
+        }   
+        .actions{
+            display: flex;
+            gap: 10px;
+        }
+        .actions    {
+            margin-left: auto;
+        }
+        .actions button {
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .actions button:hover {
+            background-color: lightgreen;
+        }
+        .actions button:active {
+            background-color: orange;
+        }
+        .actions button:focus {
+            outline: none;
+        }       
+    </style>
+</head>
+<body>
+        <p position="relative"><b>To-do/Grocery lists </b></p>
+        <input type="text" id="input_item" placeholder="Enter your input">
+        <button onclick="Additem()">Add</button>
+        <ul id="grocery_list"></ul>
+        <script>
+            let grocery_list=[];
+        function renderlist(){
+            const list = document.getElementById("grocery_list");  //get element 
+            list.innerHTML = "";  //empty list to store user input
+            grocery_list.forEach((item, index) => {
+                const li = document.createElement("li");     //similar to <li></li>
+                const span = document.createElement("span"); //similar to <span></span> 
+                span.textContent = item;
+                const actions = document.createElement("div"); //similar to <div></div>
+                actions.className = "actions";
+                const Edit_Btn = document.createElement("button"); // similar to button tag in html
+                Edit_Btn.textContent = "Edit";
+                Edit_Btn.onclick = () => Edit_item(index);
+                const Delete_Btn = document.createElement("button"); 
+                Delete_Btn.textContent = "Delete";
+                Delete_Btn.onclick = () => Delete_item(index);
+                actions.appendChild(Edit_Btn);
+                actions.appendChild(Delete_Btn);
+                li.appendChild(span);
+                li.appendChild(actions);
+                list.appendChild(li);
+            });
+        }
+        function Additem(){
+            const input = document.getElementById("input_item");
+            const item = input.value.trim();
+            if(item){
+                grocery_list.push(item);
+                input.value = "";
+                renderlist();
+            }
+        }
+        function Edit_item(index){
+            const newItem = prompt("Edit item:", grocery_list[index]);
+            if(newItem !== null){
+                grocery_list[index] = newItem.trim();
+                renderlist();
+            }
+        }
+        function Delete_item(index){
+            grocery_list.splice(index, 1);
+            renderlist();
+        }
+renderlist();      
+</script> 
+</body>
+</html>
+
+
